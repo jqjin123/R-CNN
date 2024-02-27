@@ -46,7 +46,7 @@ def load_data(data_root_dir):
         data_dir = os.path.join(data_root_dir, name)
 
         data_set = CustomClassifierDataset(data_dir, transform=transform)
-        if name is 'train':
+        if name == 'train':
             """
             使用hard negative mining方式
             初始正负样本比例为1:1。由于正样本数远小于负样本，所以以正样本数为基准，在负样本集中随机提取同样数目负样本作为初始负样本集
@@ -92,7 +92,7 @@ def hinge_loss(outputs, labels):
 
     return loss
 
-
+# 增加困难样本
 def add_hard_negatives(hard_negative_list, negative_list, add_negative_list):
     for item in hard_negative_list:
         if len(add_negative_list) == 0:
